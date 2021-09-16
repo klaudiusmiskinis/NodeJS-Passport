@@ -1,5 +1,6 @@
 :root {
-    --main: linear-gradient(156deg, #d80319, #a4464a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    --main: linear-gradient(156deg, #d80319, #a4464a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+    --corporativo: #d80319;
 }
 
 html {
@@ -18,5 +19,19 @@ body {
 }
 
 .efecto:focus {
-    box-shadow: 0 0 0 0.25rem #e65c003a;
+    box-shadow: 0 0 0 0.25rem #f308083a;
+}
+
+.fondo-corporativo{
+    background-color: var(--corporativo)
+}
+
+.btn {
+    background-color: var(--corporativo);
+    color: var(--bs-white);
+    transition: 0.5s;
+}
+
+.btn:hover {
+    color: #ffffff;
 }
