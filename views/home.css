@@ -1,0 +1,22 @@
+:root {
+    --main: linear-gradient(156deg, #d80319, #a4464a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-repeat: no-repeat;
+    background: var(--main); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.gradiente {
+    background: #e65c00;  /* fallback for old browsers */
+    background: var(--main);
+    border: transparent;
+}
+
+.efecto:focus {
+    box-shadow: 0 0 0 0.25rem #e65c003a;
+}
