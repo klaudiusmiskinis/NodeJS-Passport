@@ -1,9 +1,6 @@
 const { application } = require('express')
 const express = require('express')
 const app = express()
-
-app.set('set engine', 'ejs')
-
 app.get('/', (req, res) => {
     res.render('ejs/index.ejs', {name: 'Klau'})
 })
@@ -11,10 +8,14 @@ app.get('/', (req, res) => {
 app.use(express.static('views'));
 app.use(express.static('assets'))
 
+app.set('set engine', 'ejs')
+
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/views/home.html')
+    res.render('ejs/login.ejs')
 })
 
-
+app.get('/register', (req, res) => {
+    res.render('ejs/register.ejs')
+})
 
 app.listen(3000)
