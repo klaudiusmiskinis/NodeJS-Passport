@@ -36,3 +36,11 @@ body {
 .btn:hover {
     color: #ffffff;
 }
+
+a {
+    color: var(--corporativo);
+}
+
+a:hover {
+    color: #d45c68;
+}
