@@ -22,7 +22,7 @@
                   <div class="text-center p-2 border rounded fondo-corporativo text-light">
                     <h4 class="mt-1">Register</h4>
                   </div>
-                  <form class="mt-5" action="/register" action="POST">
+                  <form class="mt-5" action="/register" method="POST">
                     <div class="form-outline mb-4">
                       <label class="form-label" for="name">Nombre</label>
                       <input type="text" id="name" name="name" class="form-control efecto" placeholder="Introduce tu usuario" autocomplete="off" required/>
@@ -33,7 +33,7 @@
                       </div>
                     <div class="form-outline mt-4">
                       <label class="form-label" for="password">Contraseña</label>
-                      <input type="password" id="password" class="form-control efecto" placeholder="Introduce tu contraseña" autocomplete="off" required/>
+                      <input type="password" id="password" class="form-control efecto" name="password" placeholder="Introduce tu contraseña" autocomplete="off" required/>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mt-4">
                       <button type="submit" class="btn efecto">Crear cuenta</button>
@@ -54,6 +54,6 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>
