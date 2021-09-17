@@ -22,12 +22,14 @@
                     <h4 class="mt-1">Login</h4>
                   </div>
                   <% if (messages.error) { %>
-                  <%= messages.error %>
+                    <div class="alert text-center alert-danger mt-2" role="alert">
+                     <%= messages.error %>
+                    </div>
                   <% } %>
                   <form class="mt-5" action="/login" method="POST">
                     <div class="form-outline mb-4">
-                      <label class="form-label" for="email">Correo</label>
-                      <input type="text" id="email" name="email" class="form-control efecto" placeholder="Introduce tu correo" autocomplete="off" required/>
+                      <label class="form-label" for="email">Email</label>
+                      <input type="text" id="email" name="email" class="form-control efecto" placeholder="Introduce tu email" autocomplete="off" required/>
                     </div>
                     <div class="form-outline mt-4">
                       <label class="form-label" for="password">Contraseña</label>
