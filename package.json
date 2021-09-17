@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-passport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klaudiusmiskinis/NodeJS-Passport.git"
+  },
+  "author": "Klau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klaudiusmiskinis/NodeJS-Passport/issues"
+  },
+  "homepage": "https://github.com/klaudiusmiskinis/NodeJS-Passport#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}
