@@ -18,7 +18,16 @@ initializePassport(
 
 let users = []
 
+users.push({ 
+    id: Date.now().toString(),
+    name: 'asd',
+    email: 'asd@asd',
+    password: bcrypt.hashSync('asd', 10),
+    profileImage: '../assets/avatar.png'
+})
+
 app.set('set engine', 'ejs')
+app.use(express.static(__dirname + '/views/assets'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('views'));
 app.use(flash())
@@ -32,7 +41,14 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 app.get('/', checkAuthenticated, (req, res) => {
-    res.render('ejs/index.ejs', {name: req.user.name})
+    let user = {
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        profileImage: req.user.profileImage  
+    };
+    console.log(user)
+    res.render('ejs/user.ejs', {user: user})
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -49,9 +65,11 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             id: Date.now().toString(),
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            profileImage: '../assets/avatar.png'
         }
         user.password = await bcrypt.hash(user.password, 10)
+        console.log(user)
         users.push(user)
         res.redirect('/login')
     } catch {
