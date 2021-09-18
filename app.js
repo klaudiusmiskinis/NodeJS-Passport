@@ -1,3 +1,4 @@
+//EXPRESS, PASSPORT (FLASH, SESSION), BCRYPT, METHOD-OVERRIDE, EJS, DOTENV
 require('dotenv').config()
 const { application } = require('express')
 const express = require('express')
