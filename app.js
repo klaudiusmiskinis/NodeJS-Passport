@@ -47,7 +47,6 @@ app.get('/', checkAuthenticated, (req, res) => {
         email: req.user.email,
         profileImage: req.user.profileImage  
     };
-    console.log(user)
     res.render('ejs/user.ejs', {user: user})
 })
 
@@ -69,7 +68,6 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             profileImage: '../assets/avatar.png'
         }
         user.password = await bcrypt.hash(user.password, 10)
-        console.log(user)
         users.push(user)
         res.redirect('/login')
     } catch {
