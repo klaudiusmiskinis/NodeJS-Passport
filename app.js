@@ -52,7 +52,6 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             password: req.body.password
         }
         user.password = await bcrypt.hash(user.password, 10)
-        console.log(user)
         users.push(user)
         res.redirect('/login')
     } catch {
