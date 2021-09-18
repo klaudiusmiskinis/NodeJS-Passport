@@ -7,18 +7,20 @@ const initializePassport = require('./passport-config')
 const initialize = require('./passport-config')
 const flash = require('express-flash')
 const session = require('express-session')
+const methodOverride = require('method-override')
 const app = express()
 
-initializePassport(passport, 
+initializePassport(
+    passport, 
     email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)
 )
 
 let users = []
 
-app.use(express.urlencoded({ extended: false}))
-app.use(express.static('views'));
 app.set('set engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static('views'));
 app.use(flash())
 app.use(session({
     secret: process.env.KEY_SESSION,
@@ -27,22 +29,22 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(methodOverride('_method'))
 
-app.get('/', (req, res) => {
-    res.render('ejs/index.ejs', {name: 'Klau'})
+app.get('/', checkAuthenticated, (req, res) => {
+    res.render('ejs/index.ejs', {name: req.user.name})
 })
 
-app.get('/login', (req, res) => {
+app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('ejs/login.ejs')
 })
 
-app.get('/register', (req, res) => {
+app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('ejs/register.ejs')
 })
 
-app.post('/register', async (req, res) => {
+app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
-        console.log(req.body)
         let user = {
             id: Date.now().toString(),
             name: req.body.name,
@@ -50,6 +52,7 @@ app.post('/register', async (req, res) => {
             password: req.body.password
         }
         user.password = await bcrypt.hash(user.password, 10)
+        console.log(user)
         users.push(user)
         res.redirect('/login')
     } catch {
@@ -61,9 +64,26 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
-
 }) )
 
+app.delete('/logout', (req, res) => {
+    req.logOut()
+    res.redirect('/login')
+})
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return res.redirect('/')
+    }
+    next()
+}
 
 app.listen(3000, () => {
     console.log('Servidor', 'ON')
