@@ -20,7 +20,7 @@ let users = []
 
 users.push({ 
     id: Date.now().toString(),
-    name: 'asd',
+    name: 'Klaudijus Miskinis',
     email: 'asd@asd',
     password: bcrypt.hashSync('asd', 10),
     profileImage: '../assets/avatar.png'
@@ -45,8 +45,8 @@ app.get('/', checkAuthenticated, (req, res) => {
         id: req.user.id,
         name: req.user.name,
         email: req.user.email,
-        profileImage: req.user.profileImage  
-    };
+        profileImage: req.user.profileImage
+    }
     res.render('ejs/user.ejs', {user: user})
 })
 
@@ -73,6 +73,14 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     } catch {
        res.redirect('/register')
     }
+})
+
+app.get('/asd', (req, res) => {
+    res.json('ASD')
+})
+
+app.post('/updateProfile', (req, res) => {
+    console.log(req)
 })
 
 app.post('/login', passport.authenticate('local', {

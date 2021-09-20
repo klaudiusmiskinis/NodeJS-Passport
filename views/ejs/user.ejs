@@ -10,32 +10,69 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="container-bg">
-        <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-xl-10 mt-5">
-                    <div class="card rounded border-3 shadow mt-5 p-3" id="panel">
-                        <div class="text-center rounded border border-3 mb-3 p-3 border-danger">
-                            <h4>Tu perfil</h4>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-auto">
+            <div class="card">
+                <div class="card-header">
+                    <img src="<%= user.profileImage %>" alt="profile avatar picture" class="shadow img-fluid mb-3 border-bottom border-3 border-danger" width="150">
+                </div>
+                <div class="card-header text-center">Usuario<p class="fw-light"><%= user.id %></p></div>
+                <div class="mt-2 text-center">
+                    <p class="fw-bold"><%= user.name %></p>
+                    <p class="fw-bold"><%= user.email %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                    <p class="mt-1">Tu perfil</p>
+                    <p class="fw-light mt-1">Configuracion de perfil</p>
+                </div>
+                <div class="mt-2">
+                    <div class="row m-2">
+                        <div class="col-sm-auto">
+                            <label class="form-label mt-2" for="name">Nombre</label>
                         </div>
-                        <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <img src="<%= user.profileImage %>" alt="profile avatar picture" class="shadow border-bottom border-3 mb-3 border-danger" width="200">
-                            </div>
-                            <div class="p-2">
-                                <h5>Usuario: <%= user.name %></h5>
-                                <h5>Correo: <%= user.email %></h5>
-                            </div>
+                        <div class="col">
+                            <input type="text" id="name" name="name" class="form-control efecto" placeholder="Introduce tu usuario" autocomplete="off" required/>
                         </div>
-                        <div class="d-flex align-items-center justify-content-center mt-4">
-                            <form action="/logout?_method=DELETE" method="POST">
-                                <button type="submit" class="btn efecto">Cerrar sesión</button>
-                            </form>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-auto">
+                            <label class="form-label mt-2" for="email">Email</label>
                         </div>
+                        <div class="col">
+                            <input type="email" id="email" name="email" class="form-control efecto" placeholder="<%= user.email %>" autocomplete="off" required/>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-auto">
+                            <label class="form-label mt-2" for="password">Contraseña</label>
+                        </div>
+                        <div class="col">
+                            <input type="password" id="password" name="password" class="form-control efecto" placeholder="Introduce tu nueva contraseña" autocomplete="off" required/>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                            <button type="submit" class="btn efecto" id="modificaUsuario">Aplicar cambios</button>
+                        <form action="/logout?_method=DELETE" method="POST">
+                            <button type="submit" class="btn efecto">Cerrar sesión</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row-auto mt-3">
+            <div class="card">
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit" class="btn efecto">Cerrar sesión</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+<script src="../script/script.js"></script>
 </body>
 </html>
