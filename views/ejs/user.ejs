@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" href="./assets/icon.png">
-    <title>Login</title>
+    <title>Perfil de usuario</title>
 </head>
 <body>
 <div class="container mt-3">
@@ -56,20 +56,17 @@
                         </div>
                     </div>
                     <div class="row m-2">
-                            <button type="submit" class="btn efecto" id="modificaUsuario">Aplicar cambios</button>
+                        <div>
+                            <button type="submit" class="btn efecto" id="modificar-usuario">Aplicar cambios</button>
+                        </div>
                         <form action="/logout?_method=DELETE" method="POST">
-                            <button type="submit" class="btn efecto">Cerrar sesión</button>
+                            <button type="submit" class="btn efecto" id="cerrar-sesion">Cerrar sesión</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row-auto mt-3">
-            <div class="card">
-                <form action="/logout?_method=DELETE" method="POST">
-                    <button type="submit" class="btn efecto">Cerrar sesión</button>
-                </form>
-            </div>
         </div>
     </div>
 </div>

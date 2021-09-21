@@ -1,30 +1,29 @@
-async function getRequest(url){
-    try {
-        fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data));
-    } catch(e) {
-        console.log(e)
-    }
+document.getElementById('modificar-usuario').onclick = function() {
+    postRequest('/updateProfile')
 }
 
+// FUNCIONES
+async function getRequest(url){
+        let response = await fetch(url);
+        let data = await response.text();
+        console.log(data);
+}
 
-document.getElementById('modificaUsuario').onclick = postRequest('/updateProfile')
 async function postRequest(url) {
-    data = {
+    change = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
     }
 
-    console.log(data)
-
-    await fetch(url, {
-        method : "POST",
-        body: data
-    }).then(
-        response => response.json()
-    ).then(
-        html => console.log(html)
-    )
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(change)
+      });
+      
+    let result = await response.json();
+    console.log(result)
 }

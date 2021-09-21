@@ -5,6 +5,7 @@ const express = require('express')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const initializePassport = require('./passport-config')
+const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
@@ -30,6 +31,7 @@ app.set('set engine', 'ejs')
 app.use(express.static(__dirname + '/views/assets'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('views'));
+app.use(express.json())
 app.use(flash())
 app.use(session({
     secret: process.env.KEY_SESSION,
@@ -75,12 +77,12 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     }
 })
 
-app.get('/asd', (req, res) => {
-    res.json('ASD')
+app.post('/updateProfile', (req, res) => {
+    console.log(req.body)
 })
 
-app.post('/updateProfile', (req, res) => {
-    console.log(req)
+app.get('/asd', (req, res) => {
+    res.send('ASD a a a')
 })
 
 app.post('/login', passport.authenticate('local', {
