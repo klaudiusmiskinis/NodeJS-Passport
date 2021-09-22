@@ -78,7 +78,17 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 })
 
 app.post('/updateProfile', (req, res) => {
-    console.log(req.body)
+    user = users.find(user => user.id === req.user.id)
+    user = {
+        id: req.user.id,
+        name: req.body.name,
+        email: req.body.email,
+        password: req.user.password,
+        profileImage: req.user.profileImage
+    }
+    users.push(user)
+    console.log(users)
+    res.redirect('/')
 })
 
 app.get('/asd', (req, res) => {

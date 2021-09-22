@@ -36,6 +36,7 @@
                             <label class="form-label mt-2" for="name">Nombre</label>
                         </div>
                         <div class="col">
+                            <form action="/updateProfile" method="POST">      
                             <input type="text" id="name" name="name" class="form-control efecto" placeholder="Introduce tu usuario" autocomplete="off" required/>
                         </div>
                     </div>
@@ -55,10 +56,9 @@
                             <input type="password" id="password" name="password" class="form-control efecto" placeholder="Introduce tu nueva contraseña" autocomplete="off" required/>
                         </div>
                     </div>
-                    <div class="row m-2">
-                        <div>
+                    <div class="row m-2">                  
                             <button type="submit" class="btn efecto" id="modificar-usuario">Aplicar cambios</button>
-                        </div>
+                        </form> 
                         <form action="/logout?_method=DELETE" method="POST">
                             <button type="submit" class="btn efecto" id="cerrar-sesion">Cerrar sesión</button>
                         </form>
@@ -70,6 +70,5 @@
         </div>
     </div>
 </div>
-<script src="../script/script.js"></script>
 </body>
 </html>
