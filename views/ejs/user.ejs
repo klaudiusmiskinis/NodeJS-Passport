@@ -12,8 +12,8 @@
 <body>
 <div class="container mt-3">
     <div class="row">
-        <div class="col-auto">
-            <div class="card">
+        <div class="col-lg-auto m-1">
+            <div class="card" id="profile-display">
                 <div class="card-header">
                     <img src="<%= user.profileImage %>" alt="profile avatar picture" class="shadow img-fluid mb-3 border-bottom border-3 border-danger" width="150">
                 </div>
@@ -29,11 +29,14 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
+        <div class="col-lg m-1">
+            <div class="card" id="profile-config">
                 <div class="card-header text-center">
-                    <p class="mt-1">Tu perfil</p>
-                    <p class="fw-light mt-1">Configuracion de perfil</p>
+                    <h5 class="mt-1">Tu perfil</h5>
+                    <h6 class="fw-light mt-1">Configuracion de perfil</h6>
+                </div>
+                <div class="text-center">
+                    <h5 class="fw-light mt-1">Datos</h5>
                 </div>
                 <div class="mt-2">
                     <div class="row m-2">
@@ -67,20 +70,25 @@
                     </div>
                 </div>
                 </form>
-                <div class="row mx-2 mt-5">
-                    <div class="col-sm-auto">
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <input type="file" class="form-control efecto" name="filetoupload">
+                
+                    <div class="row mx-2 mt-5 mb-3">
+                        <div class="text-center">
+                            <h5 class="fw-light">Imagen de perfil</h5>
                         </div>
-                        <div class="col d-grid">
-                            <input type="submit" class="btn efecto" value="Subir archivo">
-                        </form> 
+                        <div class="col-sm-auto mt-2">
+                            <form action="/upload" method="post" enctype="multipart/form-data">
+                                <input type="file" class="form-control efecto" name="filetoupload">
+                            </div>
+                            <div class="col d-grid mt-2">
+                                <input type="submit" class="btn efecto" value="Subir archivo">
+                            </form> 
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="../script/script.js"></script>
 </body>
 </html>
