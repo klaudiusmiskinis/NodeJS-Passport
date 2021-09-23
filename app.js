@@ -1,14 +1,17 @@
-//EXPRESS, PASSPORT (FLASH, SESSION), BCRYPT, METHOD-OVERRIDE, EJS, DOTENV
+//EXPRESS, PASSPORT (FLASH, SESSION), BCRYPT, METHOD-OVERRIDE, EJS, DOTENV, FORMIDABLE, FS
 require('dotenv').config()
 const { application } = require('express')
 const express = require('express')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const path = require('path')
 const initializePassport = require('./passport-config')
+const fileupload = require("express-fileupload");
 const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const fs = require('fs');
 const app = express()
 
 initializePassport(
@@ -32,6 +35,7 @@ app.use(express.static(__dirname + '/views/assets'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('views'));
 app.use(express.json())
+app.use(fileupload());
 app.use(flash())
 app.use(session({
     secret: process.env.KEY_SESSION,
@@ -77,7 +81,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     }
 })
 
-app.post('/updateProfile', async (req, res) => {
+app.post('/updateProfile', checkAuthenticated, async (req, res) => {
     user = users.find(user => user.id === req.user.id)
     user = {
         id: user.id,
@@ -93,15 +97,25 @@ app.post('/updateProfile', async (req, res) => {
     res.redirect('/')
 })
 
-app.get('/asd', (req, res) => {
-    res.send('ASD a a a')
-})
+
+app.post('/upload', checkAuthenticated, async (req, res) => {
+    if (req.files.filetoupload.mimetype.substr(0,6) == 'image/') {
+        req.files.filetoupload.tempFilePath = __dirname + '/views/assets/' + req.files.filetoupload.name
+        req.user.profileImage = '../assets/'+req.files.filetoupload.name
+        try {
+            await req.files.filetoupload.mv(__dirname + '/views/assets/' + req.files.filetoupload.name) 
+        } catch(e){
+            console.log(e)
+        }
+    }
+    res.redirect('/')
+});
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
-}) )
+}))
 
 app.delete('/logout', (req, res) => {
     req.logOut()

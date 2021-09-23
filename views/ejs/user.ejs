@@ -22,6 +22,11 @@
                     <p class="fw-bold"><%= user.name %></p>
                     <p class="fw-bold"><%= user.email %></p>
                 </div>
+                <div class="row text-center m-2">
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit" class="btn efecto" id="cerrar-sesion">Cerrar sesión</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col">
@@ -32,41 +37,48 @@
                 </div>
                 <div class="mt-2">
                     <div class="row m-2">
-                        <div class="col-sm-auto">
-                            <label class="form-label mt-2" for="name">Nombre</label>
-                        </div>
-                        <div class="col">
-                            <form action="/updateProfile" method="POST">      
-                            <input type="text" id="name" name="name" class="form-control efecto" placeholder="<%= user.name %>" autocomplete="off" required/>
-                        </div>
+                    <div class="col-sm-2">
+                        <label class="form-label mt-2" for="name">Nombre</label>
                     </div>
-                    <div class="row m-2">
-                        <div class="col-sm-auto">
-                            <label class="form-label mt-2" for="email">Email</label>
-                        </div>
-                        <div class="col">
-                            <input type="email" id="email" name="email" class="form-control efecto" placeholder="<%= user.email %>" autocomplete="off" required/>
-                        </div>
-                    </div>
-                    <div class="row m-2">
-                        <div class="col-sm-auto">
-                            <label class="form-label mt-2" for="password">Contraseña</label>
-                        </div>
-                        <div class="col">
-                            <input type="password" id="password" name="password" class="form-control efecto" placeholder="Introduce tu nueva contraseña" autocomplete="off" required/>
-                        </div>
-                    </div>
-                    <div class="row m-2">                  
-                            <button type="submit" class="btn efecto" id="modificar-usuario">Aplicar cambios</button>
-                        </form> 
-                        <form action="/logout?_method=DELETE" method="POST">
-                            <button type="submit" class="btn efecto" id="cerrar-sesion">Cerrar sesión</button>
-                        </form>
+                    <div class="col">
+                        <form action="/updateProfile" method="POST">      
+                        <input type="text" id="name" name="name" class="form-control efecto" placeholder="<%= user.name %>" autocomplete="off" required/>
                     </div>
                 </div>
+                <div class="row m-2">
+                    <div class="col-sm-2">
+                        <label class="form-label mt-2" for="email">Email</label>
+                    </div>
+                    <div class="col">
+                        <input type="email" id="email" name="email" class="form-control efecto" placeholder="<%= user.email %>" autocomplete="off" required/>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-sm-2">
+                        <label class="form-label mt-2" for="password">Contraseña</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" id="password" name="password" class="form-control efecto" placeholder="Introduce tu nueva contraseña" autocomplete="off" required/>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="d-grid">
+                        <button type="submit" class="btn efecto" id="modificar-usuario">Aplicar cambios</button>
+                    </div>
+                </div>
+                </form>
+                <div class="row mx-2 mt-5">
+                    <div class="col-sm-auto">
+                        <form action="/upload" method="post" enctype="multipart/form-data">
+                            <input type="file" class="form-control efecto" name="filetoupload">
+                        </div>
+                        <div class="col d-grid">
+                            <input type="submit" class="btn efecto" value="Subir archivo">
+                        </form> 
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
-        <div class="row-auto mt-3">
         </div>
     </div>
 </div>
