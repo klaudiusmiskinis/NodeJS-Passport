@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
@@ -14,7 +15,7 @@
     <div class="row">
         <div class="col-lg-auto m-1">
             <div class="card" id="profile-display">
-                <div class="card-header">
+                <div class="card-header text-center justify-content-center">
                     <img src="<%= user.profileImage %>" alt="profile avatar picture" class="shadow img-fluid mb-3 border-bottom border-3 border-danger" width="150">
                 </div>
                 <div class="card-header text-center">Usuario<p class="fw-light"><%= user.id %></p></div>
@@ -70,7 +71,6 @@
                     </div>
                 </div>
                 </form>
-                
                     <div class="row mx-2 mt-5 mb-3">
                         <div class="text-center">
                             <h5 class="fw-light">Imagen de perfil</h5>
