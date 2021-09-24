@@ -65,6 +65,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
+
     try {
         let user = {
             id: Date.now().toString(),
@@ -83,14 +84,21 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 
 app.post('/updateProfile', checkAuthenticated, async (req, res) => {
     user = users.find(user => user.id === req.user.id)
-    user = {
-        id: user.id,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        profileImage: user.profileImage
+    if(req.body.name) {
+        console.log(req.body.name)
+        user.name = req.body.name
     }
-    user.password = await bcrypt.hash(req.body.password, 10)
+
+    if(req.body.email) {
+        console.log(req.body.email)
+        user.email = req.body.email
+    }
+
+    if(req.body.password) {
+        console.log(req.body.password)
+        user.password = await bcrypt.hash(req.body.password, 10)
+    }
+    
     users.splice(user)
     req.user = user
     users.push(user)
